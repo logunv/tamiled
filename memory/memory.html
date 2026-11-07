@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TamilED Memory Games </title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts for playful text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+		:root {
+		    --primary: #8e24aa;
+		    --primary-dark: #6a1b9a;
+		    --secondary: #ffb300;
+		    --bg: #f5f3f7;
+		    --card: #ffffff;
+			--text: #333333;
+			--correct: #4caf50;
+			--answer: blue;
+		    --wrong: #f44336;
+		}
+
+		* {
+		    box-sizing: border-box;
+		    margin: 0;
+		    padding: 0;
+		}
+
+		body {
+		    //font-family: 'Segoe UI', cursive, Tahoma, Geneva, Verdana, sans-serif;
+			background-image: url('../background.jpg');
+		    background-color: var(--bg);
+		    color: var(--text);
+		    display: flex;
+		    flex-direction: column;
+		    align-items: center;
+		    min-height: 100vh;
+		    margin: 0;
+		    padding: 0;
+//          padding: 2rem 1rem;
+//			background-position: 0 0, 20px 20px;
+//			color: #334155;
+		}
+		/* Top Title Bar */
+		.top-bar {
+		    font-family: 'Segoe UI', cursive, Tahoma, Geneva, Verdana, sans-serif;
+		    width: 100%;
+			background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+		    color: #ffffff;
+		    text-align: center;
+		    padding: 10px 20px;
+		    font-size: 16px;
+		    // font-weight: bold;
+		    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+		    letter-spacing: 0.5px;
+		}
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.8rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            border: 4px solid #f1f5f9;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon-box {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            margin-bottom: 1.2rem;
+            color: white;
+            box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        /* Specific card color styles */
+        .card-pink { border-color: #fbcfe8; }
+        .card-pink .icon-box { background: linear-gradient(135deg, #f472b6, #ec4899); }
+        .card-pink h2 { color: #db2777; }
+
+        .card-orange { border-color: #fed7aa; }
+        .card-orange .icon-box { background: linear-gradient(135deg, #fb923c, #f97316); }
+        .card-orange h2 { color: #ea580c; }
+
+        .card-green { border-color: #bbf7d0; }
+        .card-green .icon-box { background: linear-gradient(135deg, #4ade80, #16a34a); }
+        .card-green h2 { color: #15803d; }
+
+        .card-purple { border-color: #e9d5ff; }
+        .card-purple .icon-box { background: linear-gradient(135deg, #c084fc, #9333ea); }
+        .card-purple h2 { color: #7e22ce; }
+
+        .card-blue { border-color: #bae6fd; }
+        .card-blue .icon-box { background: linear-gradient(135deg, #38bdf8, #0284c7); }
+        .card-blue h2 { color: #0369a1; }
+
+        .card-teal { border-color: #99f6e4; }
+        .card-teal .icon-box { background: linear-gradient(135deg, #2dd4bf, #0d9488); }
+        .card-teal h2 { color: #0f766e; }
+
+        .card-yellow { border-color: #fef08a; }
+        .card-yellow .icon-box { background: linear-gradient(135deg, #facc15, #eab308); }
+        .card-yellow h2 { color: #ca8a04; }
+
+        .card h2 {
+            font-family: 'Fredoka', cursive;
+            font-size: 1.6rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #64748b;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+        }
+
+        .play-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 14px;
+            font-family: 'Fredoka', cursive;
+            font-size: 1.1rem;
+            text-decoration: none;
+            color: white;
+            background-color: #6366f1;
+            box-shadow: 0 4px 0 #4338ca;
+            transition: all 0.15s ease;
+            cursor: pointer;
+        }
+
+        .play-btn:hover {
+            background-color: #4f46e5;
+        }
+
+        .play-btn:active {
+            transform: translateY(4px);
+            box-shadow: none;
+        }
+
+        /* Styling for TBD / Coming Soon cards */
+        .card-tbd {
+            opacity: 0.75;
+            background: #fafafa;
+            border-color: #cbd5e1;
+            border-style: dashed;
+        }
+
+        .card-tbd:hover {
+            transform: none;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+
+        .card-tbd .icon-box {
+            background: #94a3b8;
+        }
+
+        .badge-tbd {
+            background: #e2e8f0;
+            color: #475569;
+            font-family: 'Fredoka', cursive;
+            font-size: 0.9rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+	</style>
+</head>
+<body>
+
+    <header class="top-bar">
+        <h1>TamilED Memory Games</h1>
+    </header>
+	<center>
+	<h2><a href=instructions.html>Instructions</a></h2>
+	<br>
+	</center>
+    <main class="games-grid">
+
+        <!-- 1. Body Parts -->
+        <div class="card card-pink">
+            <div class="icon-box">
+                <i class="fa-solid fa-child"></i>
+            </div>
+            <h2>உடலுறுப்புகள் </h2>
+            <a href="body.html" class="play-btn">Play Now!</a>
+        </div>
+
+        <!-- 2. Food -->
+        <div class="card card-orange">
+            <div class="icon-box">
+                <i class="fa-solid fa-apple-whole"></i>
+            </div>
+            <h2>உணவுகள் </h2>
+            <a href="food.html" class="play-btn">Play Now!</a>
+        </div>
+
+        <!-- 3. Animals -->
+        <div class="card card-green">
+            <div class="icon-box">
+                <i class="fa-solid fa-dog"></i>
+            </div>
+            <h2>விலங்குகள் </h2>
+            <a href="animals.html" class="play-btn">Play Now!</a>
+        </div>
+
+
+        <!-- 6. Park -->
+        <div class="card card-teal">
+            <div class="icon-box">
+                <i class="fa-solid fa-tree"></i>
+            </div>
+            <h2>பூங்கா </h2>
+            <a href="park.html" class="play-btn">Play Now!</a>
+        </div>
+
+        <!-- 7. Disney -->
+        <div class="card card-purple">
+            <div class="icon-box">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+            <h2>டிஸ்னி </h2>
+            <a href="dis.html" class="play-btn">Play Now!</a>
+        </div>
+
+        <!-- 8. Vehicles -->
+        <div class="card card-blue">
+            <div class="icon-box">
+                <i class="fa-solid fa-car-side"></i>
+            </div>
+			<h2>வாகனங்கள் </h2>
+            <a href="veh.html" class="play-btn">Play Now!</a>
+        </div>
+
+        <!-- 9. Turtle and Hare -->
+        <div class="card card-yellow">
+            <div class="icon-box">
+                <i class="fa-solid fa-turtle"></i>
+            </div>
+            <h2>ஆமையும் முயலும் </h2>
+            <a href="muyal-aamai.html" class="play-btn">Play Now!</a>
+        </div>
+		<!-- 4. Relatives (TBD) -->
+		<div class="card card-tbd">
+		    <div class="icon-box">
+		        <i class="fa-solid fa-people-roof"></i>
+		    </div>
+		    <h2 style="color: #64748b;">உறவுகள் </h2>
+		    <span class="badge-tbd">
+		        <i class="fa-solid fa-clock"></i> Coming Soon
+		    </span>
+		</div>
+
+		<!-- 5. Birds (TBD) -->
+		<div class="card card-tbd">
+		    <div class="icon-box">
+		        <i class="fa-solid fa-crow"></i>
+		    </div>
+		    <h2 style="color: #64748b;">பறவைகள் </h2>
+		    <span class="badge-tbd">
+		        <i class="fa-solid fa-clock"></i> Coming Soon
+		    </span>
+		</div>
+
+    </main>
+
+</body>
+</html>

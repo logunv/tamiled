@@ -1,0 +1,42 @@
+fruits
+	 mango
+	 banana
+	 guava
+animals
+	 dog
+	 cat
+	 lion
+ fox
+	 bunny
+	 turtle
+ mouse
+	 horse
+ donkey
+color
+	 black
+	 white
+	 green
+ yellow
+ blue
+ red
+food
+	 idli
+	 dosai
+ rice
+ sambar
+ chutney
+vegetables
+body parts
+	 head
+	 hand
+ mouth
+ nose
+ ear
+	 legs
+ finger
+birds
+ hen
+	 rooster
+ crow
+ peacock
+ kuyil

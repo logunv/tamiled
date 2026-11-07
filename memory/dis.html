@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>TamilED Memory Game - Disney Characters</title>
+  <meta charset="UTF-8">
+  <style>
+	.card {
+		width:260px;
+		height:260px;
+	}
+	body {
+		background-image: url('../background.jpg');		
+	}
+
+    td {
+      background: white;
+      color: blue;
+    }
+    .button {
+      background: blue;
+      color: white;
+      font-size:30px;
+      text-align:top;
+    }
+    .hide {
+      background: lightgray;
+      color: white;
+      font-size:30px;
+    }
+
+  </style>
+
+</head>
+
+  <body bgcolor=Gainsboro onload='init()'>
+	<center>
+    <table bgcolor=LightSteelBlue width=600>
+<tr>
+      <td> <img class=card onclick=showId(0) title=images/dis/cars.jpg id=0 src=images/dis/cars.jpg></img></td>
+      <td> <img class=card onclick=showId(1) title=images/dis/duck.jpg id=1 src=images/dis/duck.jpg></img></td>
+      <td> <img class=card onclick=showId(2) title=images/dis/goofy.jpg id=2 src=images/dis/goofy.jpg></img></td>
+</tr>
+<tr>
+      <td> <img class=card onclick=showId(3) title=images/dis/incredibles.jpg id=3 src=images/dis/incredibles.jpg></img></td>
+      <td> <img class=card onclick=showId(4) title=images/dis/lion.jpg id=4 src=images/dis/lion.jpg></img></td>
+      <td> <img class=card onclick=showId(5) title=images/dis/minnie.jpg id=5 src=images/dis/minnie.jpg></img></td>
+</tr>
+<tr>
+      <td> <img class=card onclick=showId(6) title=images/dis/monsters.jpg id=6 src=images/dis/monsters.jpg></img></td>
+      <td> <img class=card onclick=showId(7) title=images/dis/nemo.jpg id=7 src=images/dis/nemo.jpg></img></td>
+      <td> <img class=card onclick=showId(8) title=images/dis/toy.jpg id=8 src=images/dis/toy.jpg></img></td>
+</tr>
+    </table>
+<table>
+<tr>
+<td>
+    <button align=top onclick="start()" id=start class=button>Start</button>
+    <button align=top onclick="play()" id=play class=button>Play</button>
+    <button align=top onclick="show()" id=show class=button>Show</button>
+</td>
+<td>
+    <div id=dice1 align=left><img id=spin width=200 height=200 src=blank.jpg /></div>
+</td>
+</tr>
+</table>
+
+    <script>
+      var savedId = null;
+      var missing = 'blank.jpg';
+      var blank = 'q.png';
+      var black = 'lightgray.jpg';
+      var played = [];
+      var savedImages = [];
+
+      function start() {
+        spin1();
+        sleep(30000).then(() => {
+          stopSpin();
+          for(var id = 0; id < 9; id++) {
+            var e = document.getElementById(id);
+            savedImages[id] = e.src;
+            e.src = black;
+          }
+          var p = document.getElementById("start");
+          p.style.display = "none";
+          p.disabled = true;
+        });
+      }
+
+      function init() {
+        var p = document.getElementById("play");
+        p.style.display = "block";
+        p.disabled = false;
+        p.className = 'button';
+      }
+
+      function play() {
+        if(savedId !== null) return;
+        spin();
+        sleep(1000).then(() => {
+          stopSpin();
+
+          var id = getRandom(9);
+          savedId = id;
+          var e = document.getElementById(id);
+          e.src=blank;
+
+/*
+          var p = document.getElementById("play");
+          p.disabled = true;
+          p.className = 'hide';
+          p.style.display = "none";
+*/
+        });
+      }
+
+      var spinners = [ '',
+         'single-dice-rolling.gif', 'giphy.gif', 'wheel.gif',
+         'bird.gif', 'clock-animated-gif-9.gif',
+         'clock-fast-white.gif', 'dice-rolling-gif-8.gif'
+      ];
+
+      function spin() {
+        var length = spinners.length - 1;
+        var r1 = Math.floor(Math.random() * length) + 1;
+        document.getElementById("spin").src = "spin/" + spinners[r1];
+      }
+
+      function stopSpin() {
+        document.getElementById("spin").src = missing;
+      }
+
+      function sleep (time) {
+        return new Promise((resolve) => setTimeout(resolve, time));
+      }
+
+      function showId(id) {
+
+        if(id === null) return;
+        if(id != savedId) return;
+        var e = document.getElementById(id);
+        e.src=savedImages[id];        
+        savedId = null;
+      }
+
+      function calcLength() {
+        var cnt = 0;
+        for(var i = 0; i < 9; i++) if(played[i]) cnt++;
+        return cnt;
+      }
+
+      function getRandom(length) {
+        while(calcLength() < length) {
+          var r = Math.floor(Math.random() * length);
+          if(!played[r]) {
+            played[r] = true;
+            return r;
+          }
+        }
+        alert('Game Over!');
+      }
+      function show() {
+        showId(savedId);
+      }
+      function spin1() {
+        document.getElementById("spin").src = "spin/" + 'sleep-gif.gif';
+      }
+
+    </script>
+  </body>
+
+</html>

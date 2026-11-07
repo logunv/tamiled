@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TamilED Bingo Card Generator</title>
+<style>
+    :root {
+        --primary-color: #4f46e5;
+        --primary-hover: #4338ca;
+        --bg-color: #f3f4f6;
+        --card-bg: #ffffff;
+        --text-color: #1f2937;
+        --border-color: #e5e7eb;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        -padding: 20px;
+	background-image: url('background.jpg');		
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    header {
+		width: 100%;
+		background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* Elegant blue gradient */
+		color: white;
+		padding: 5px 0px 10px 0px;
+		-display: flex;
+		justify-content: space-between;
+		align-items: center;
+		-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		font-family: 'Fredoka', cursive, sans-serif;		
+        text-align: center;
+		font-size: 30px;
+    }
+
+    h1 {
+        color: var(--primary-color);
+        margin-bottom: 8px;
+    }
+
+    .controls {
+        background: var(--card-bg);
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        margin-bottom: 30px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    @media (min-width: 768px) {
+        .controls {
+            grid-template-columns: 1fr 1fr;
+        }
+        .full-width {
+            grid-column: span 2;
+        }
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    label {
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    textarea {
+        width: 100%;
+        height: 120px;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        resize: vertical;
+        font-size: 0.95rem;
+    }
+
+    input[type="number"], input[type="text"] {
+        padding: 8px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        font-size: 0.95rem;
+    }
+
+    .checkbox-group {
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .checkbox-group input {
+        width: 18px;
+        height: 18px;
+    }
+
+    button {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    button:hover {
+        background-color: var(--primary-hover);
+    }
+
+    .btn-print {
+        background-color: #059669;
+    }
+
+    .btn-print:hover {
+        background-color: #047857;
+    }
+
+    .actions {
+        display: flex;
+        gap: 10px;
+    }
+
+    .error {
+        color: #dc2626;
+        font-weight: 600;
+        margin-top: 10px;
+        display: none;
+    }
+
+    /* Printable Bingo Cards Area */
+    #boards-container {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        align-items: center;
+    }
+
+    .bingo-card {
+        background: white;
+        padding: 20px;
+        border: 3px solid #000;
+        border-radius: 8px;
+        width: 100%;
+        max-width: 1024px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        page-break-after: always;
+        break-after: page;
+    }
+
+    .bingo-title {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 900;
+        letter-spacing: 2px;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+    }
+
+    .bingo-grid {
+        display: grid;
+        border: 2px solid #000;
+        background-color: #fff;
+    }
+
+    .bingo-cell {
+        background-color: #fff;
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 5px;
+        font-size: 1.85rem;
+        font-weight: 600;
+        word-break: break-word;
+        hyphens: auto;
+        border: 1px solid #000;
+        margin: -0.5px;
+    }
+
+    .bingo-cell.free-space {
+        background-color: #fef08a;
+        font-weight: bold;
+    }
+    .bingo-footer {
+        text-align: center;
+        font-size: 22px;
+        margin-top: 20px;
+        font-weight: bold;
+    }
+
+    /* Print styles */
+    @media print {
+        * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        body {
+            background: white;
+            padding: 0;
+        }
+        
+        .no-print {
+            display: none !important;
+        }
+
+        #boards-container {
+            gap: 0;
+            display: block;
+        }
+
+        .bingo-card {
+            box-shadow: none;
+            margin: 0 auto;
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+            border: 3px solid #000 !important;
+            page-break-after: always;
+            break-after: page;
+        }
+
+        .bingo-grid {
+            border: 2px solid #000 !important;
+        }
+
+        .bingo-cell {
+            border: 1px solid #000 !important;
+            margin: -0.5px !important;
+            /* Keeps cells square on print without pushing rows apart */
+            aspect-ratio: 1 / 1 !important;
+        }
+    }
+</style>
+</head>
+<body>
+	<header class="no-print">
+	    TamilED Bingo Card Generator
+	</header>
+
+        <div class="container">
+	    <p class="no-print">Enter your words, customize options, and generate print-ready Bingo cards.</p>
+
+        <section class="controls no-print">
+            <div class="form-group full-width">
+                <label for="word-list">Words/Phrases (one per line or comma-separated):</label>
+                <textarea id="word-list" placeholder="Apple&#10;Banana&#10;Cherry&#10;Date&#10;Elderberry..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="board-title">Card Title:</label>
+                <input type="text" id="board-title" value="பிங்கோ">
+            </div>
+
+            <div class="form-group">
+                <label for="board-count">Number of Boards to Generate:</label>
+                <input type="number" id="board-count" value="1" min="1" max="100">
+            </div>
+
+            <div class="form-group">
+                <label for="grid-size">Grid Size:</label>
+                <input type="number" id="grid-size" value="5" min="3" max="7">
+            </div>
+
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="include-free" checked>
+                <label for="include-free">Include "Free Space" in center</label>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="free-text">Free Space Text:</label>
+                <input type="text" id="free-text" value="இலவசம்">
+            </div>
+
+            <div class="actions full-width">
+                <button type="button" onclick="generateBingoCards()">Generate Cards</button>
+                <button type="button" class="btn-print" onclick="window.print()">Print Cards</button>
+            </div>
+
+            <div id="error-message" class="error full-width"></div>
+        </section>
+
+        <main id="boards-container"></main>
+    </div>
+
+    <script>
+        // Preset sample words on initial load
+        document.getElementById('word-list').value = [
+            "அம்மா", "அப்பா", "அக்கா", "அண்ணா", "தம்பி", "தங்கை",
+            "தாத்தா", "பாட்டி", "மாமா", "அத்தை", "தமிழ்", "பள்ளி",
+            "கதை", "பாட்டு", "ஓடு", "நில்", "ஆடு", "எடு",
+            "நாய்", "பூனை", "எலி", "சிங்கம்", "மான்", "கரடி",
+            "கோழி", "புறா", "மயில்", "காக்கா", "குருவி", "கொக்கு"
+        ].join('\n');
+
+        function generateBingoCards() {
+            const errorDiv = document.getElementById('error-message');
+            errorDiv.style.display = 'none';
+            errorDiv.textContent = '';
+
+            // Get Inputs
+            const rawWords = document.getElementById('word-list').value;
+            const cardTitle = document.getElementById('board-title').value.trim() || 'பிங்கோ';
+            const boardCount = parseInt(document.getElementById('board-count').value, 10);
+            const gridSize = parseInt(document.getElementById('grid-size').value, 10);
+            const includeFree = document.getElementById('include-free').checked;
+            const freeText = document.getElementById('free-text').value.trim() || 'FREE';
+
+            // Parse Words (handles newline or comma separated)
+            let words = rawWords.split(/[\n,]+/).map(w => w.trim()).filter(w => w.length > 0);
+
+            // Validation
+            const totalCells = gridSize * gridSize;
+            const requiredWords = includeFree ? totalCells - 1 : totalCells;
+
+            if (words.length < requiredWords) {
+                errorDiv.textContent = `Error: You need at least ${requiredWords} unique words for a ${gridSize}x${gridSize} grid (currently have ${words.length}).`;
+                errorDiv.style.display = 'block';
+                return;
+            }
+
+            const container = document.getElementById('boards-container');
+            container.innerHTML = ''; // Clear previous cards
+
+            // Determine Center Index for odd-sized grids
+            const isOddGrid = gridSize % 2 !== 0;
+            const centerIndex = isOddGrid && includeFree ? Math.floor(totalCells / 2) : -1;
+
+            // Generate specified number of boards
+            for (let b = 0; b < boardCount; b++) {
+                const shuffledWords = shuffle([...words]);
+                
+                const card = document.createElement('div');
+                card.className = 'bingo-card';
+
+                const title = document.createElement('div');
+                title.className = 'bingo-title';
+                title.textContent = cardTitle;
+                card.appendChild(title);
+
+                const grid = document.createElement('div');
+                grid.className = 'bingo-grid';
+                grid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+
+                let wordIdx = 0;
+                for (let i = 0; i < totalCells; i++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'bingo-cell';
+
+                    if (i === centerIndex) {
+                        cell.textContent = freeText;
+                        cell.classList.add('free-space');
+                    } else {
+                        cell.textContent = shuffledWords[wordIdx];
+                        wordIdx++;
+                    }
+
+                    grid.appendChild(cell);
+                }
+
+                card.appendChild(grid);
+                const footer = document.createElement('div');
+                footer.className = 'bingo-footer';
+                footer.textContent = 'TamilED Games';
+                card.appendChild(footer);
+                
+                container.appendChild(card);
+            }
+        }
+
+        // Fisher-Yates Shuffle Algorithm
+        function shuffle(array) {
+            let currentIndex = array.length, randomIndex;
+            while (currentIndex !== 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+            }
+            return array;
+        }
+
+        window.onload = generateBingoCards;
+    </script>
+</body>
+</html>

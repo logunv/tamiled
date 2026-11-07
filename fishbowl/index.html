@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TamilED Fish Bowl</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts for playful text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+  	    background-image: url('../background.jpg');
+            font-family: 'Nunito', sans-serif;
+            // background-size: 32px 32px; remove this
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            -padding: 2rem 1rem;
+        }
+       h1 {
+           padding: 10px 0 10px 0;
+       }
+       .top-bar {
+		font-family: 'Fredoka', cursive, sans-serif;		
+	}
+       header {
+		//font-family: 'Fredoka', cursive, sans-serif;
+	  	width: 100%;
+	  	background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+	  	color: white;
+		padding: 5px 0px 15px 0px;
+	  	-display: flex;
+	  	-justify-content: space-between;
+	  	align-items: center;
+	  	-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      	text-align: center;
+	  	font-size: 30px;
+  	  }
+
+        .level-card {
+            background: #ffffff;
+            border-radius: 32px;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.08);
+            border: 4px solid transparent;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .level-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 32px -8px rgba(0, 0, 0, 0.12);
+        }
+
+        .icon-circle {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            box-shadow: inset 0 -6px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        .level-card h2 {
+            font-family: 'Fredoka', cursive;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .level-card p {
+            font-size: 1.1rem;
+            color: #64748b;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        /* 1. Beginner Card - Green */
+        .card-beginner {
+            border-color: #a7f3d0;
+            background: linear-gradient(180deg, #ffffff 60%, #ecfdf5 100%);
+        }
+        .card-beginner .icon-circle {
+            background: linear-gradient(135deg, #34d399, #059669);
+        }
+        .card-beginner h2 {
+            color: #059669;
+        }
+
+        /* 2. Intermediate Card - Orange */
+        .card-intermediate {
+            border-color: #fed7aa;
+            background: linear-gradient(180deg, #ffffff 60%, #fff7ed 100%);
+        }
+        .card-intermediate .icon-circle {
+            background: linear-gradient(135deg, #fb923c, #ea580c);
+        }
+        .card-intermediate h2 {
+            color: #ea580c;
+        }
+
+        /* 3. Advanced Card - Purple */
+        .card-advanced {
+            border-color: #e9d5ff;
+            background: linear-gradient(180deg, #ffffff 60%, #faf5ff 100%);
+        }
+        .card-advanced .icon-circle {
+            background: linear-gradient(135deg, #c084fc, #9333ea);
+        }
+        .card-advanced h2 {
+            color: #9333ea;
+        }
+		
+    </style>
+</head>
+<body>
+    <header class="top-bar">TamilED Fish Bowl</header>
+    <h1><a href=instructions.html>Instructions</a></h1>
+    <p>
+    <main class="levels-grid">
+        
+        <a href=beginner/index.html>
+        <div class="level-card card-beginner">
+            <div class="icon-circle">
+                <i class="fa-solid fa-seedling"></i>
+            </div>
+            <h2>Beginner</h2>
+            <p>Easy & Fun</p>
+        </div>
+        </a>
+
+        <div class="level-card card-intermediate">
+            <div class="icon-circle">
+                <i class="fa-solid fa-star"></i>
+            </div>
+            <h2>Intermediate</h2>
+            <p>Coming Soon</p>
+            <p>Medium Challenge</p>
+        </div>
+
+        <div class="level-card card-advanced">
+            <div class="icon-circle">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h2>Advanced</h2>
+            <p>Coming Soon</p>
+            <p>For Super Stars!</p>
+        </div>
+
+    </main>
+
+</body>
+</html>

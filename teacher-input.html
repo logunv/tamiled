@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tamil ED - Teacher Input Form</title>
+  <style>
+    :root {
+      --bg-color: #f4f6f9;
+      --card-bg: #ffffff;
+      --border-radius: 12px;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    * { 
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }   
+
+
+
+    body {
+	background-image: url('background.jpg');
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      margin: 0;
+      --padding: 20px;
+      --display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+       header {
+                font-family: 'Fredoka', cursive, sans-serif;
+                width: 100%;
+                background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+                color: white;
+                padding: 5px 0px 5px 0px;
+                margin-bottom: 15px;
+                ---display: flex;
+                ---justify-content: space-between;
+                align-items: center;
+                ---box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+                font-size: 30px;
+          }
+
+    .form-card {
+      width: 100%;
+      max-width: 740px;
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      box-sizing: border-box;
+    }
+
+    .iframe-container {
+      position: relative;
+      width: 100%;
+      height: 900px;
+      overflow: hidden;
+    }
+
+    .iframe-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+<header> 
+    TamilED Teacher Input
+</header>
+<center>
+  <div class="form-card">
+    <div class="iframe-container">
+      <iframe 
+        src="https://docs.google.com/forms/d/e/1FAIpQLSfWION8O4x11Sf65yDcZOOnpDz1Aao7Xm4W1kKYWyxHlwI6fA/viewform?embedded=true" 
+        frameborder="0" 
+        marginheight="0" 
+        marginwidth="0">
+        Loading…
+      </iframe>
+    </div>
+  </div>
+
+  </body>
+  </html>

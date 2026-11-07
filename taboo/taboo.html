@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TamilED Taboo</title>
+    <style>
+        :root {
+            --primary: #8e24aa;
+            --primary-dark: #6a1b9a;
+            --secondary: #ffb300;
+            --bg: #f5f3f7;
+            --card: #ffffff;
+			--text: #333333;
+			--correct: #4caf50;
+			--answer: blue;
+            --wrong: #f44336;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			background-image: url('../background.jpg');
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Top Title Bar */
+        .top-bar {
+            width: 100%;
+			background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 14px 20px;
+            font-size: 22px;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            letter-spacing: 0.5px;
+        }
+
+        .game-container {
+			background-color:#ffffff;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            width: 100%;
+            max-width: 600px;
+            padding: 24px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .level-selector {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .level-btn {
+            padding: 8px 16px;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+			font-size: 20px;
+            transition: all 0.2s;
+        }
+		.show {
+			display:none;
+		}
+
+        .level-btn.active, .level-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            background: #f0e6f6;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .tiles-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            min-height: 60px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 8px;
+			font-size: 50px;
+        }
+
+        .target-area {
+            border: 2px dashed #ccc;
+            background: #fafafa;
+        }
+
+        .tile {
+            background: var(--secondary);
+            color: #000;
+            font-size: 24px;
+            font-weight: bold;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            cursor: pointer;
+            user-select: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.1s, background-color 0.2s;
+        }
+
+        .tile:active {
+            transform: scale(0.95);
+        }
+
+        .hint-box {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 15px;
+            min-height: 24px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            color: white;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover { opacity: 0.9; }
+        .btn-check { background: var(--correct); }
+        .btn-reset { background: #ff9800; }
+        .btn-hint { background: #00bcd4; }
+        .btn-next { background: var(--primary); }
+
+        .message {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            min-height: 27px;
+        }
+
+		.correct { color: var(--correct); }
+		.answer { color: var(--answer);}
+        .wrong { color: var(--wrong); }
+		.word-list {
+			display: flex;
+			flex-direction: column;
+			gap: 5px;
+			margin-bottom:20px;
+		}
+		#cardInput {
+			height:100px;
+		}
+		.setup-section {
+		  margin-bottom: 20px;
+		}
+		textarea {
+		  width: 100%;
+		  height: 120px;
+		  padding: 10px;
+		  border: 2px solid #e0e0e0;
+		  border-radius: 8px;
+		  resize: vertical;
+		  font-size: 14px;
+		}
+
+		.stats-bar {
+		  display: flex;
+		  justify-content: space-between;
+		  margin-bottom: 20px;
+		  font-size: 18px;
+		  font-weight: bold;
+		}
+
+		.timer {
+		  color: #e74c3c;
+		}
+
+		.score {
+		  color: #2ecc71;
+		}
+
+		/* Taboo Card Styling */
+		.card {
+		  background: #ffffff;
+		  border: 3px solid #3498db;
+		  border-radius: 12px;
+		  padding: 20px;
+		  margin-bottom: 20px;
+		  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+		}
+
+		.target-word {
+		  font-size: 28px;
+		  font-weight: 800;
+		  color: #2c3e50;
+		  text-transform: uppercase;
+		  margin-bottom: 15px;
+		  padding-bottom: 10px;
+		  border-bottom: 2px solid #eee;
+		}
+
+		.taboo-title {
+		  font-size: 12px;
+		  text-transform: uppercase;
+		  letter-spacing: 1px;
+		  color: #e74c3c;
+		  font-weight: bold;
+		  margin-bottom: 8px;
+		}
+
+		.taboo-words {
+		  list-style: none;
+		  padding: 0;
+		  margin: 0;
+		}
+
+		.taboo-words li {
+		  font-size: 18px;
+		  color: #7f8c8d;
+		  margin: 6px 0;
+		  font-weight: 600;
+		}
+
+		/* Controls */
+		.btn-group {
+		  display: flex;
+		  gap: 10px;
+		  justify-content: center;
+		  flex-wrap: wrap;
+		}
+
+		button {
+		  border: none;
+		  padding: 12px 20px;
+		  font-size: 16px;
+		  font-weight: bold;
+		  border-radius: 8px;
+		  cursor: pointer;
+		  transition: background 0.2s, opacity 0.2s;
+		}
+
+		button:hover {
+		  opacity: 0.9;
+		}
+
+		button:disabled {
+		  background-color: #cccccc !important;
+		  color: #666666 !important;
+		  cursor: not-allowed;
+		  opacity: 1;
+		}
+
+		.btn-start { background-color: #3498db; color: white; width: 100%; }
+		.btn-correct { background-color: #2ecc71; color: white; flex: 1; }
+		.btn-taboo { background-color: #e74c3c; color: white; flex: 1; }
+		.btn-pass { background-color: #f39c12; color: white; flex: 1; }
+
+		.hidden {
+		  display: none !important;
+		}
+		.top-bar {
+		    width: 100%;
+			background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+		    color: #ffffff;
+		    text-align: center;
+		    padding: 14px 20px;
+		    font-size: 22px;
+		    font-weight: bold;
+		    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+		    letter-spacing: 0.5px;
+		}
+		
+    </style>
+</head>
+<body>
+
+<header class="top-bar">
+    TamilED Taboo
+</header>
+
+<div class="game-container">
+	<div class="word-list" id="div-word">
+	    <label for="cardInput">Enter the word list (format: word:word1,word2,word3)</label>
+		<textarea id="cardInput" ></textarea>
+	</div>
+	<div class="level-selector">
+		<button class="level-btn" onclick="hide()" id=hide>Hide Words</button>
+		<button class="level-btn show" onclick="show()" id=show>Show Words</button>
+	</div>
+
+	<div class="game-container">
+		
+	  <div id="setupScreen" class="setup-section">
+	    <br/><br/>
+		<div style="margin-bottom: 15px;">
+		  <label for="timeInput" style="font-weight: bold; margin-right: 8px;">Time Limit (seconds):</label>
+		  <input type="number" id="timeInput" value="60" min="5" max="300" style="width: 80px; padding: 6px; font-size: 16px; border-radius: 6px; border: 1px solid #ccc; text-align: center;">
+		</div>
+		
+	    <button id="startBtn" class="btn-start">Start Game</button>
+	  </div>
+
+	  <!-- Active Game Screen -->
+	  <div id="gameScreen" class="hidden">
+	    <div class="stats-bar">
+	      <div class="timer">Time: <span id="timeRemaining">60</span>s</div>
+	      <div class="score">Score: <span id="scoreValue">0</span></div>
+	    </div>
+
+	    <div class="card">
+	      <div id="targetWord" class="target-word">WORD</div>
+	      <div class="taboo-title">Forbidden Words</div>
+	      <ul id="tabooList" class="taboo-words">
+	        <!-- Clues will be injected here -->
+	      </ul>
+	    </div>
+
+	    <div class="btn-group">
+	      <button id="correctBtn" class="btn-correct">Correct (+1)</button>
+	      <button id="tabooBtn" class="btn-taboo">Taboo (-1)</button>
+	      <button id="passBtn" class="btn-pass">Pass</button>
+	    </div>
+	  </div>
+
+	  <!-- Game Over Screen -->
+	  <div id="gameOverScreen" class="hidden">
+	    <h2>Time's Up!</h2>
+	    <p style="font-size: 22px;">Final Score: <strong id="finalScore">0</strong></p>
+	    <button id="restartBtn" class="btn-start">Play Again</button>
+	  </div>
+	</div>
+	
+</div>
+
+<script>
+    const wordlist = [
+		"தமிழ்: பள்ளி, மொழி, படி",
+		"புத்தகம்: படி, பாடம், தேர்வு",
+		"மழை: தண்ணீர், மேகம், குடை",
+		"பறவை: இறக்கை, கூடு, பறக்கும்",
+		"தூக்கம்: இரவு, கட்டில், கனவு",
+		"சூரியன்: பகல், வெளிச்சம், சூடு",
+		"சாப்பாடு: சமையல், உணவு, அடுப்பு",
+		"மரம்: இலை, கிளை, பழம்"
+	];
+
+	const textarea = document.getElementById('cardInput');
+	textarea.value = wordlist.join('\n');
+	
+	// ('div-word', false, 'upload', 'show')
+	function hide() {
+		const myDiv = document.getElementById('div-word');
+		myDiv.style.display = 'none';
+		document.getElementById('hide').style.display = 'none';
+		document.getElementById('show').style.display = 'block';
+	}
+	function show() {
+		document.getElementById('div-word').style.display = '';
+		document.getElementById('hide').style.display = '';
+		document.getElementById('show').style.display = 'none';
+	}
+
+
+	function showmsg(msg) {
+		const answerArea = document.getElementById('message');
+		answerArea.className = 'message answer';
+		answerArea.innerHTML = msg;		
+	}	
+	let cards = [];
+	let currentCardIndex = 0;
+	let score = 0;
+	let timer = null;
+	let timeLeft = 60;
+
+	// DOM Elements
+	const setupScreen = document.getElementById('setupScreen');
+	const gameScreen = document.getElementById('gameScreen');
+	const gameOverScreen = document.getElementById('gameOverScreen');
+
+	const cardInput = document.getElementById('cardInput');
+	const startBtn = document.getElementById('startBtn');
+	const restartBtn = document.getElementById('restartBtn');
+
+	const targetWordEl = document.getElementById('targetWord');
+	const tabooListEl = document.getElementById('tabooList');
+	const scoreValueEl = document.getElementById('scoreValue');
+	const timeRemainingEl = document.getElementById('timeRemaining');
+	const finalScoreEl = document.getElementById('finalScore');
+
+	const correctBtn = document.getElementById('correctBtn');
+	const tabooBtn = document.getElementById('tabooBtn');
+	const passBtn = document.getElementById('passBtn');
+
+	// Parse textarea input into array of objects [{word, clues: []}]
+	function parseInput() {
+	  const text = cardInput.value.trim();
+	  if (!text) return [];
+
+	  return text
+	    .split('\n')
+	    .filter(line => line.includes(':'))
+	    .map(line => {
+	      const [word, cluesString] = line.split(':');
+	      const clues = cluesString
+	        ? cluesString.split(',').map(c => c.trim()).filter(Boolean)
+	        : [];
+	      return { word: word.trim(), clues };
+	    });
+	}
+
+	// Shuffle cards array
+	function shuffle(array) {
+	  for (let i = array.length - 1; i > 0; i--) {
+	    const j = Math.floor(Math.random() * (i + 1));
+	    [array[i], array[j]] = [array[j], array[i]];
+	  }
+	}
+
+	// Display current card
+	function renderCard() {
+	  if (currentCardIndex >= cards.length) {
+	    endGame();
+	    return;
+	  }
+
+	  const card = cards[currentCardIndex];
+	  targetWordEl.textContent = card.word;
+	  
+	  tabooListEl.innerHTML = '';
+	  card.clues.forEach(clue => {
+	    const li = document.createElement('li');
+	    li.textContent = clue;
+	    tabooListEl.appendChild(li);
+	  });
+	}
+
+	// Start Game
+	function startGame() {
+	  cards = parseInput();
+	  
+	  if (cards.length === 0) {
+	    alert('Please enter at least one valid word line (e.g., Word: clue1, clue2)');
+	    return;
+	  }
+
+	  shuffle(cards);
+	  currentCardIndex = 0;
+	  score = 0;
+	  // timeLeft = 60;
+	  timeLeft = document.getElementById('timeInput').value;
+
+	  scoreValueEl.textContent = score;
+	  timeRemainingEl.textContent = timeLeft;
+
+	  setupScreen.classList.add('hidden');
+	  gameOverScreen.classList.add('hidden');
+	  gameScreen.classList.remove('hidden');
+
+	  renderCard();
+
+	  // Start countdown timer
+	  timer = setInterval(() => {
+	    timeLeft--;
+	    timeRemainingEl.textContent = timeLeft;
+
+	    if (timeLeft <= 0) {
+	      endGame();
+	    }
+	  }, 1000);
+	}
+
+	// Next Card Logic
+	function nextCard() {
+	  currentCardIndex++;
+	  renderCard();
+	}
+
+	// End Game
+	function endGame() {
+	  clearInterval(timer);
+	  finalScoreEl.textContent = score;
+	  gameScreen.classList.add('hidden');
+	  gameOverScreen.classList.remove('hidden');
+	}
+
+	// Event Listeners
+	startBtn.addEventListener('click', startGame);
+	restartBtn.addEventListener('click', () => {
+	  gameOverScreen.classList.add('hidden');
+	  setupScreen.classList.remove('hidden');
+	});
+
+	correctBtn.addEventListener('click', () => {
+	  score++;
+	  scoreValueEl.textContent = score;
+	  nextCard();
+	});
+
+	tabooBtn.addEventListener('click', () => {
+	  score--;
+	  scoreValueEl.textContent = score;
+	  nextCard();
+	});
+
+	passBtn.addEventListener('click', () => {
+	  nextCard();
+	});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TamilED Fish Bowl Instructions</title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --accent-color: #2980b9;
+      --bg-color: #f8f9fa;
+      --card-bg: #ffffff;
+      --text-color: #333333;
+      --border-color: #e0e0e0;
+      --alert-bg: #fff3cd;
+      --alert-text: #856404;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      margin: 0;
+      //padding: 20px;
+      //display: flex;
+		    align-items: center;
+      justify-content: center;
+	  background-image: url('../background.jpg');	  
+    }
+		.top-bar {
+		    font-family: 'Segoe UI', cursive, Tahoma, Geneva, Verdana, sans-serif;
+		    width: 100%;
+			background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+		    color: #ffffff;
+		    text-align: center;
+		    padding: 10px 20px;
+		    font-size: 20px;
+		    // font-weight: bold;
+		    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+		    letter-spacing: 0.5px;
+		}
+
+    .instructions-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      max-width: 1024px;
+      width: 100%;
+      padding: 24px;
+      align:center;
+    }
+
+    h2 {
+      color: var(--primary-color);
+      margin-top: 0;
+      border-bottom: 2px solid var(--accent-color);
+      padding-bottom: 8px;
+    }
+
+    .section-title {
+      font-weight: bold;
+      color: var(--accent-color);
+      font-size: 1.1em;
+      margin-top: 16px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .level-list, .player-list {
+      margin: 0 0 16px 0;
+      padding-left: 20px;
+    }
+
+    .level-list li, .player-list li {
+      margin-bottom: 6px;
+    }
+
+    .note-box {
+      background-color: var(--alert-bg);
+      color: var(--alert-text);
+      padding: 10px 14px;
+      border-left: 4px solid #ffeba2;
+      border-radius: 4px;
+      font-weight: 500;
+      margin: 12px 0;
+    }
+
+    .step-text {
+      margin: 6px 0;
+    }
+  </style>
+</head>
+<body>
+  <header class="top-bar">TamilED Fish Bowl Instructions</header>
+  <center>
+
+  <div class="instructions-card">
+    <h2>Instructions</h2>
+
+    <div class="level-list">
+      <h3>1. Beginner
+      <h3>2. Intermediate
+      <h3>3. Advanced
+    </div>
+
+    <div class="section-title">Facilitator</div>
+    <div class="note-box">
+      ⚠️ Do not show the game on the screen
+    </div>
+    <p class="step-text">Click on one of the above levels depending on the students' Tamil skill level.</p>
+    <p class="step-text">Ask a student to come to the front.</p>
+
+    <div class="section-title">Player</div>
+    <div class="player-list">
+      <h3>Once it starts, click on <strong>Roll</strong>.</h3>
+      <h3>Give 3 clues to the class. If anyone guesses right, give that student a point. Otherwise, the player gets a point.</h3>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TamilED Eduation System</title>
+<style>
+    .table-container {
+      width: 100%;
+      max-width: 900px;
+      overflow-x: auto;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e2e8f0;
+      margin: 0px 10px 20px 30px;
+    }
+
+    .custom-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+
+    .custom-table thead {
+      background-color: #f1f5f9;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .custom-table th {
+      padding: 1rem 1.25rem;
+      font-weight: 600;
+      color: #475569;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    .custom-table td {
+      padding: 0.3rem 1.25rem;
+      border-bottom: 1px solid #f1f5f9;
+      color: #334155;
+      vertical-align:top;
+      line-height: 1.4;
+    }
+
+    /* Alternating Row Colors */
+    .custom-table tbody tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+
+    /* Row Hover Effect */
+    .custom-table tbody tr:hover {
+      background-color: #f1f5f9;
+      transition: background-color 0.15s ease-in-out;
+    }
+
+    :root {
+        --primary-color: #4f46e5;
+        --primary-hover: #4338ca;
+        --bg-color: #f3f4f6;
+        --card-bg: #ffffff;
+        --text-color: #1f2937;
+        --border-color: #e5e7eb;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        -padding: 20px;
+    background-image: url('background.jpg');        
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+    background-color:white;
+    height: auto;
+    }
+
+    header {
+    width: 100%;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* Elegant blue gradient */
+    color: white;
+    padding: 5px 0px 10px 0px;
+    -display: flex;
+    justify-content: space-between;
+    align-items: center;
+    -box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Fredoka', cursive, sans-serif;        
+        text-align: center;
+    font-size: 30px;
+    }
+
+    h1 {
+        color: var(--primary-color);
+    margin: 5px 0px 10px 10px;
+    font-size: 20px;
+    }
+    .subtext {
+        margin-left: 40px;
+    font-size:20px;
+        margin-bottom: 10px;
+    }
+    .text {
+        line-height: 1.5;
+    margin: 5px 10px 5px 30px;
+    font-size:20px;
+    }
+    ul {
+        margin-left: 50px;
+    font-size:20px;
+        margin-bottom: 10px;
+    }
+
+    @media (min-width: 768px) {
+        .controls {
+            grid-template-columns: 1fr 1fr;
+        }
+        .full-width {
+            grid-column: span 2;
+        }
+    }
+    .close {
+    padding: 20px 0px 20px;
+    font-size:20px;
+    color: green;
+    text-align: center;
+    }
+
+</style>
+</head>
+<body>
+    <header class="no-print">
+        TamilED Education System
+    </header>
+    <div class="container">
+      <h1>Introduction</h1>
+      <div class=text>
+        Our mission is to transmit the Tamil language across generations—not just to the next generation, but through them to all future generations. Achieving this requires instilling a deep love for Tamil while equipping students with robust language skills.
+        <p>
+        Our primary goal is to foster comprehensive communication skills: strong conversational proficiency in spoken Tamil alongside full literacy in written Tamil, grounded in a deep appreciation of our Tamil heritage.
+     </div>
+     <h1>Key Challenges</h1>
+     <div class=text>
+       While acquiring the first language happens naturally and effortlessly, acquiring a second language is not easy. The Tamil learners in the diaspora face several unique challenges:
+        <ul>
+          <li><b>Lack of Linguistic Environment: </b> Very limited opportunities to use and practice Tamil outside class. </li>
+          <li><b>Diglossic Nature of Tamil: </b>The significant difference between formal written Tamil and everyday spoken Tamil.</li>
+          <li><b>Initial Skill Gaps: </b>Unlike in Tamil Nadu these learners lack the basic listening and speaking skill when they start Tamil school.</li>
+          <li><b>Low Motivation: </b>Learners often feel they can navigate daily life without Tamil and hence they lack motivation to learn Tamil.</li>
+	  <li><b>Insufficient time to learn Tamil: </b> Learning one hour a day, it will take about 1,100 hours to gain proficiency in Tamil. These learners are not able to spare that miuch time for Tamil.</li> 
+        </ul>
+      </div>
+
+      <h1>Solutions</h1>
+        <div class=text>
+          To overcome these challenges and ensure long-term retention, TamilED adopts the following strategies:
+          <ul>
+            <li><b>Natural Language Acquisition: </b>Focusing on practical immersion rather than rote instruction.</li>
+            <li><b>Progressive Learning: </b>Structuring skill development systematically over time.</li>
+            <li><b>UNESCO's Happy School Framework: </b>Creating a joyful, supportive, and engaging learning atmosphere.</li>
+            <li><b>Learner-Centered Approach: </b>Personalizing content to fit individual student interests and needs.</li>
+            <li><b>Practical & Fun Experience: </b>Using gamified, real-world simulations to drive engagement.</li>
+            <li><b>Teacher Autonomy: </b>Empowering educators to adapt lessons to their specific classroom dynamics.</li>
+          </ul>
+        </div>
+        <h1>High Level Curriculum</h1>
+        <div class="table-container">
+          <table class="custom-table">
+            <thead>
+              <th width=150>Phase</th>
+              <th width=250>Skill Focus</th>
+              <th>Core Focus</th>
+            </thead>
+            <tbody>
+            <tr>
+              <td>Years 1 & 2</td>
+              <td>Conversation</td>
+              <td>
+	      Focus on building foundation listening and speaking skills in natural, spoken Tamil.
+	      <p>
+	      Topics: self, family, friends, stories, songs, games, ...
+	      </td>
+            </tr>
+            <tr>
+              <td>Years 3 & 4</td>
+              <td>Conversation and Literacy</td>
+              <td>Expand conversational fluency and introduce Tamil alphabet and literacy skill.
+	      <p>
+	      Topics: neighborhood, school, shopping, restaurant, stories, songs, games, ...
+	      </td>
+	    </tr>
+            <tr>
+              <td>Years 5 & 6</td>
+              <td>Conversation, Literacy and Heritage</td>
+              <td>
+	       Continue developing advanced conversational fluency while building functional
+	       reading and writing literacy.
+	      <p>
+	      Topics: Tamil culture, literature, social topics, stories, songs, ...
+	      </td>
+	    </tr>
+            <tr>
+              <td>Years 7 - 9</td>
+              <td>Communication and Transformative</td>
+              <td>
+	       Master spoken and written Tamil, explore Tamil heritage, 
+	       and integrate core life skills.
+	      <p>
+	      Topics: Tamil history, social issues, critical thinking, problem-solving, time management, money management, ...
+	      </td>
+	    </tr>
+          </tbody>
+        </table>
+        </div>
+        <h1>Student Centered</h1>
+        <div class=text>
+          A one-size-fits-all model does not work for language learning. Instructional content and activities are tailored to align with each learner's background, pace, and interests.
+        </div>
+        <h1>Teacher Autonomy</h1>
+        <div class=text>
+          Because teachers best understand their students' unique needs, TamilED gives educators the flexibility and autonomy to design and adapt classroom activities dynamically.
+        </div>
+        <h1>Language Acquisition</h1>
+        <div class=text>
+          Our goal goes beyond teaching about Tamil grammar and rules—we aim to help students acquire Tamil naturally so it becomes a living part of their identity.
+        </div>
+        <h1>Practical and Fun</h1>
+        <div class=text>
+          To compensate for the lack of outside immersion, TamilED transforms the classroom into an active linguistic environment. Lessons model real-life scenarios, such as talking with family, shopping, visiting the doctor, dining out, and traveling.
+        </div>
+        <h1>Building Intrinsic Motivation</h1>
+        <div class=text>
+          When students feel Tamil is irrelevant to their daily lives, motivation drops. We keep learning relevant and exciting by anchoring lessons in storytelling, music, interactive games, and practical life applications.
+        </div>
+        <div class=close>All the best!</div>
+    </div>
+</body>
+</html>
+
