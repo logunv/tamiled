@@ -210,6 +210,7 @@
 
     <div class="stats-bar">
         <div>மதிப்பெண்: <span id="score">0</span></div>
+        <div>சொற்கள்: <span id="words">0</span></div>
         <div>வரிசை: <span id="streak">0</span></div>
     </div>
 
@@ -301,6 +302,10 @@
     let streak = 0;
     let selectedLetters = [];
 
+	function updateNumWords() {
+	    document.getElementById('words').innerText = wordBank[currentLevel].length;
+	}
+
 	function uploadList() {
 	    const rawWords = document.getElementById('word-list').value;
 		const textArea = document.getElementById('word-list');
@@ -314,6 +319,7 @@
 		    hint: 'N/A'
 		  }));
 		  nextWord();
+
 		  showmsg(wordBank[currentLevel].length + ' words uploaded');
 	}
 	
@@ -350,6 +356,7 @@
     }
 
     function setLevel(level) {
+        if(currentLevel == level) return;
         currentLevel = level;
         document.querySelectorAll('.level-btn').forEach(btn => btn.classList.remove('active'));
         event.target.classList.add('active');
@@ -371,6 +378,7 @@
         document.getElementById('hint').innerText = 'க்ளூ பார்க்க "குறிப்பு" பொத்தானை அழுத்தவும்';
         
         renderGame();
+	   updateNumWords();
     }
 
     function renderGame() {
