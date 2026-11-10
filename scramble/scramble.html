@@ -11,9 +11,9 @@
             --secondary: #ffb300;
             --bg: #f5f3f7;
             --card: #ffffff;
-			--text: #333333;
-			--correct: #4caf50;
-			--answer: blue;
+            --text: #333333;
+            --correct: #4caf50;
+            --answer: blue;
             --wrong: #f44336;
         }
 
@@ -23,7 +23,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-			background-image: url('../background.jpg');
+            background-image: url('../background.jpg');
             background-color: var(--bg);
             color: var(--text);
             display: flex;
@@ -37,7 +37,7 @@
         /* Top Title Bar */
         .top-bar {
             width: 100%;
-			background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: #ffffff;
             text-align: center;
             padding: 14px 20px;
@@ -73,12 +73,12 @@
             border-radius: 20px;
             cursor: pointer;
             font-weight: bold;
-			font-size: 20px;
+            font-size: 20px;
             transition: all 0.2s;
         }
-		.show {
-			display:none;
-		}
+        .show {
+            display:none;
+        }
 
         .level-btn.active, .level-btn:hover {
             background: var(--primary);
@@ -104,7 +104,7 @@
             margin-bottom: 20px;
             padding: 10px;
             border-radius: 8px;
-			font-size: 50px;
+            font-size: 50px;
         }
 
         .target-area {
@@ -170,19 +170,19 @@
             min-height: 27px;
         }
 
-		.correct { color: var(--correct); }
-		.answer { color: var(--answer);}
+        .correct { color: var(--correct); }
+        .answer { color: var(--answer);}
         .wrong { color: var(--wrong); }
-		.word-list {
-			display: flex;
-			flex-direction: column;
-			gap: 5px;
-			margin-bottom:20px;
-		}
-		#word-list {
-			height:100px;
-		}
-		
+        .word-list {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom:20px;
+        }
+        #word-list {
+            height:100px;
+        }
+        
     </style>
 </head>
 <body>
@@ -192,16 +192,16 @@
 </header>
 
 <div class="game-container">
-	<div class="word-list" id="div-word">
-	    <label for="word-list">Enter your own words or use the preloaded words:</label>
-	    <textarea id="word-list"></textarea>
-	</div>
-	<div class="level-selector">
-	    <button class="level-btn" onclick="uploadList()" id=upload>Upload Words</button>
-		<button class="level-btn" onclick="hide()" id=hide>Hide Words</button>
-		<button class="level-btn show" onclick="show()" id=show>Show Words</button>
-	</div>
-	
+    <div class="word-list" id="div-word">
+        <label for="word-list">Enter your own words or use the preloaded words:</label>
+        <textarea id="word-list"></textarea>
+    </div>
+    <div class="level-selector">
+        <button class="level-btn" onclick="uploadList()" id=upload>Upload Words</button>
+        <button class="level-btn" onclick="hide()" id=hide>Hide Words</button>
+        <button class="level-btn show" onclick="show()" id=show>Show Words</button>
+    </div>
+    
     <div class="level-selector">
         <button class="level-btn active" onclick="setLevel('beginner')">ஆரம்பநிலை</button>
         <button class="level-btn" onclick="setLevel('intermediate')">இடைநிலை</button>
@@ -214,85 +214,85 @@
         <div>வரிசை: <span id="streak">0</span></div>
     </div>
 
-	<div class="hint-box" id="hint">க்ளூ பார்க்க "குறிப்பு" பொத்தானை அழுத்தவும்</div>
-	<div class="hint-box" id="hint">Click on the letters in the right order்</div>
+    <div class="hint-box" id="hint">க்ளூ பார்க்க "குறிப்பு" பொத்தானை அழுத்தவும்</div>
+    <div class="hint-box" id="hint">Click on the letters in the right order்</div>
 
     <div class="tiles-container" id="scramble-area"></div>
-	<div class="tiles-container target-area" id="answer-area"></div>
+    <div class="tiles-container target-area" id="answer-area"></div>
 
     <div class="controls">
         <button class="btn btn-hint" onclick="showHint()">குறிப்பு</button>
         <button class="btn btn-reset" onclick="resetCurrentWord()">மீட்டமை</button>
         <button class="btn btn-check" onclick="checkAnswer()">சரிபார்</button>
-		<button class="btn btn-next" onclick="nextWord()">அடுத்த சொல்</button>
-		<button class="btn btn-next" onclick="showAnswer()">விடை</button>
+        <button class="btn btn-next" onclick="nextWord()">அடுத்த சொல்</button>
+        <button class="btn btn-next" onclick="showAnswer()">விடை</button>
     </div>
 
-	<div class="message" id="message"></div>
+    <div class="message" id="message"></div>
 </div>
 
 <script>
     const wordBank = {
         beginner: [
-			{ word: "அம்மா", meaning: "Mother", hint: "நம்மை ஈன்றவள்" },
+            { word: "அம்மா", meaning: "Mother", hint: "நம்மை ஈன்றவள்" },
             { word: "அப்பா", meaning: "Father", hint: "குடும்பத்தின் தலைவர்" },
-			{ word: "நிலவு", meaning: "Moon", hint: "இரவில் ஒளிரும் விண்பொருள்" },
-			{ word: "பகல்", hint: "இரவுக்கு எதிர்." },
-			{ word: "மலர்", meaning: "Flower", hint: "செடியில் பூப்பது" },
-			{ word: "மரம்", meaning: "Tree", hint: "நிழல் தரும் தாவரம்" },
-		// { word: "", hint: "" },
-			{ word: "பந்து", hint: "விளையாடலாம்" },
-			{ word: "விரல்", hint: "கையில் இருக்கும்" },
-			{ word: "கரடி", hint: "காட்டில் இருக்கும்" },
-			{ word: "இட்டலி", hint: "சாப்பிடலாம்" },
-			{ word: "காகம்", hint: "பறவை" },
-			{ word: "குயில்", hint: "இது கூவும்" },
-			{ word: "மயில்", hint: "இது ஆடும்" },
-			{ word: "நாக்கு", hint: "வாயில் இருக்கும்" },
-			{ word: "சிங்கம்", hint: "காட்டு இராஜா" },
-			{ word: "பொங்கல்", hint: "சாபாடு" },
-			{ word: "பச்சை", hint: "நிறம்" },
-			{ word: "வெள்ளை", hint: "நிறம்" },
-			{ word: "நீலம்", hint: "நிறம்" },
-			{ word: "அக்கா", hint: "உன் உறவு" },
-			{ word: "கொக்கு", hint: "ஒரு பறவை" },
-			{ word: "தங்கை", hint: "உன் உறவு" },
-			{ word: "தொட்டி", hint: "செடி வைக்கலாம்" },
-			{ word: "ஐந்து", hint: "ஒரு எண்" },
-			{ word: "எட்டு", hint: "ஒரு எண்" },
-			{ word: "மூன்று", hint: "ஒரு எண்" },
-			{ word: "பாட்டி", hint: "உன் உறவு" },
-			{ word: "சேவல்", hint: "ஒரு பறவை" },
-			{ word: "மூக்கு", hint: "உன் முகத்தில் இருக்கும்" },
-			{ word: "பத்து", hint: "ஒரு எண்" },
+            { word: "நிலவு", meaning: "Moon", hint: "இரவில் ஒளிரும் விண்பொருள்" },
+            { word: "பகல்", hint: "இரவுக்கு எதிர்." },
+            { word: "மலர்", meaning: "Flower", hint: "செடியில் பூப்பது" },
+            { word: "மரம்", meaning: "Tree", hint: "நிழல் தரும் தாவரம்" },
+        // { word: "", hint: "" },
+            { word: "பந்து", hint: "விளையாடலாம்" },
+            { word: "விரல்", hint: "கையில் இருக்கும்" },
+            { word: "கரடி", hint: "காட்டில் இருக்கும்" },
+            { word: "இட்டலி", hint: "சாப்பிடலாம்" },
+            { word: "காகம்", hint: "பறவை" },
+            { word: "குயில்", hint: "இது கூவும்" },
+            { word: "மயில்", hint: "இது ஆடும்" },
+            { word: "நாக்கு", hint: "வாயில் இருக்கும்" },
+            { word: "சிங்கம்", hint: "காட்டு இராஜா" },
+            { word: "பொங்கல்", hint: "சாபாடு" },
+            { word: "பச்சை", hint: "நிறம்" },
+            { word: "வெள்ளை", hint: "நிறம்" },
+            { word: "நீலம்", hint: "நிறம்" },
+            { word: "அக்கா", hint: "உன் உறவு" },
+            { word: "கொக்கு", hint: "ஒரு பறவை" },
+            { word: "தங்கை", hint: "உன் உறவு" },
+            { word: "தொட்டி", hint: "செடி வைக்கலாம்" },
+            { word: "ஐந்து", hint: "ஒரு எண்" },
+            { word: "எட்டு", hint: "ஒரு எண்" },
+            { word: "மூன்று", hint: "ஒரு எண்" },
+            { word: "பாட்டி", hint: "உன் உறவு" },
+            { word: "சேவல்", hint: "ஒரு பறவை" },
+            { word: "மூக்கு", hint: "உன் முகத்தில் இருக்கும்" },
+            { word: "பத்து", hint: "ஒரு எண்" },
 /*
-			{ word: "", hint: "" },
-			{ word: "", hint: "" },
-			{ word: "", hint: "" },
-			{ word: "", hint: "" },
-			{ word: "", hint: "" },
+            { word: "", hint: "" },
+            { word: "", hint: "" },
+            { word: "", hint: "" },
+            { word: "", hint: "" },
+            { word: "", hint: "" },
 */
-			{ word: "வானம்", meaning: "Sky", hint: "மேலே இருக்கும். " }
+            { word: "வானம்", meaning: "Sky", hint: "மேலே இருக்கும். " }
         ],
         intermediate: [
             { word: "புத்தகம்", meaning: "Book", hint: "படிக்க உதவும் நூல்" },
             { word: "சூரியன்", meaning: "Sun", hint: "பகலில் ஒளி தரும் கோள்" },
             { word: "வானவில்", meaning: "Rainbow", hint: "மழைக்கு பின் தோன்றும் 7 வண்ணங்கள்" },
-			{ word: "சந்திரன்", hint: "இரவில் வரும்" },
-			{ word: "நாற்காலி", hint: "உட்கார உதவும்" },
+            { word: "சந்திரன்", hint: "இரவில் வரும்" },
+            { word: "நாற்காலி", hint: "உட்கார உதவும்" },
             { word: "நட்பு", meaning: "Friendship", hint: "நல்ல நண்பர்களின் தொடர்பு" }
         ],
         advanced: [
-			{ word: "வருமானம்", hint: "வேலை செய்தால் என்ன கிடைக்கும்." },
-			{ word: "முதலீடு", hint: "உங்க சேமிப்பை என்ன செய்யலாம்" },
-			{ word: "சேமிப்பு", hint: "வருமானத்தை முதலில் என்ன செய்யவேண்டும்?" },
-			{ word: "தொழில்", hint: "வருமானம் வர இதைச் செய்யலாம்" },
-			{ word: "திருக்குறள்", hint: "ஒரு தமிழ் இலக்கியம்" },
-			{ word: "பாரதியார்", hint: "கவிஞர்" },
-			{ word: "வங்கி", hint: "இங்கு நம் பணத்தைச் சேமித்து வைக்கலாம்" },
-			{ word: "நட்சத்திரம்", hint: "இரவில் வானத்தில் பார்க்கலாம்" },
+            { word: "வருமானம்", hint: "வேலை செய்தால் என்ன கிடைக்கும்." },
+            { word: "முதலீடு", hint: "உங்க சேமிப்பை என்ன செய்யலாம்" },
+            { word: "சேமிப்பு", hint: "வருமானத்தை முதலில் என்ன செய்யவேண்டும்?" },
+            { word: "தொழில்", hint: "வருமானம் வர இதைச் செய்யலாம்" },
+            { word: "திருக்குறள்", hint: "ஒரு தமிழ் இலக்கியம்" },
+            { word: "பாரதியார்", hint: "கவிஞர்" },
+            { word: "வங்கி", hint: "இங்கு நம் பணத்தைச் சேமித்து வைக்கலாம்" },
+            { word: "நட்சத்திரம்", hint: "இரவில் வானத்தில் பார்க்கலாம்" },
             { word: "நம்பிக்கை", meaning: "Trust / Hope", hint: "மனதின் உறுதி" },
-			{ word: "பட்டாம்பூச்சி", meaning: "Butterfly", hint: "வண்ணமயமான பறக்கும் பூச்சி" }
+            { word: "பட்டாம்பூச்சி", meaning: "Butterfly", hint: "வண்ணமயமான பறக்கும் பூச்சி" }
         ]
     };
 
@@ -302,41 +302,41 @@
     let streak = 0;
     let selectedLetters = [];
 
-	function updateNumWords() {
-	    document.getElementById('words').innerText = wordBank[currentLevel].length;
-	}
+    function updateNumWords() {
+        document.getElementById('words').innerText = wordBank[currentLevel].length;
+    }
 
-	function uploadList() {
-	    const rawWords = document.getElementById('word-list').value;
-		const textArea = document.getElementById('word-list');
-		const words = textArea.value
-		    .trim()
-		    .split(/[\s,]+/)
-		    .filter(Boolean);
+    function uploadList() {
+        const rawWords = document.getElementById('word-list').value;
+        const textArea = document.getElementById('word-list');
+        const words = textArea.value
+            .trim()
+            .split(/[\s,]+/)
+            .filter(Boolean);
 
-		wordBank[currentLevel] = words.map(word => ({
-		    word: word,
-		    hint: 'N/A'
-		  }));
-		  nextWord();
+        wordBank[currentLevel] = words.map(word => ({
+            word: word,
+            hint: 'N/A'
+          }));
+          nextWord();
 
-		  showmsg(wordBank[currentLevel].length + ' words uploaded');
-	}
-	
-	// ('div-word', false, 'upload', 'show')
-	function hide() {
-		const myDiv = document.getElementById('div-word');
-		myDiv.style.display = 'none';
-		document.getElementById('upload').style.display = 'none';
-		document.getElementById('hide').style.display = 'none';
-		document.getElementById('show').style.display = 'block';
-	}
-	function show() {
-		document.getElementById('div-word').style.display = '';
-		document.getElementById('upload').style.display = '';
-		document.getElementById('hide').style.display = '';
-		document.getElementById('show').style.display = 'none';
-	}
+          showmsg(wordBank[currentLevel].length + ' words uploaded');
+    }
+    
+    // ('div-word', false, 'upload', 'show')
+    function hide() {
+        const myDiv = document.getElementById('div-word');
+        myDiv.style.display = 'none';
+        document.getElementById('upload').style.display = 'none';
+        document.getElementById('hide').style.display = 'none';
+        document.getElementById('show').style.display = 'block';
+    }
+    function show() {
+        document.getElementById('div-word').style.display = '';
+        document.getElementById('upload').style.display = '';
+        document.getElementById('hide').style.display = '';
+        document.getElementById('show').style.display = 'none';
+    }
 
     function splitTamilWord(word) {
         if (typeof Intl !== 'undefined' && Intl.Segmenter) {
@@ -365,12 +365,12 @@
 
     function nextWord() {
         const pool = wordBank[currentLevel];
-		if(pool.length <= 0) {
-			const messageEl = document.getElementById('scramble-area');
-		    messageEl.innerText = 'All done!';
-		    messageEl.className = 'message correct';
-			return;
-		}
+        if(pool.length <= 0) {
+            const messageEl = document.getElementById('scramble-area');
+            messageEl.innerText = 'All done!';
+            messageEl.className = 'message correct';
+            return;
+        }
         currentWordObj = pool[Math.floor(Math.random() * pool.length)];
         selectedLetters = [];
         
@@ -378,7 +378,7 @@
         document.getElementById('hint').innerText = 'க்ளூ பார்க்க "குறிப்பு" பொத்தானை அழுத்தவும்';
         
         renderGame();
-	   updateNumWords();
+       updateNumWords();
     }
 
     function renderGame() {
@@ -390,7 +390,7 @@
         }
 
         const scrambleArea = document.getElementById('scramble-area');
-		scrambleArea.className = 'tiles-container'; 
+        scrambleArea.className = 'tiles-container'; 
 
         const answerArea = document.getElementById('answer-area');
         
@@ -401,7 +401,7 @@
             const tile = createTile(char, index, 'scramble');
             scrambleArea.appendChild(tile);
         });
-		removeWord(wordBank[currentLevel], currentWordObj.word);
+        removeWord(wordBank[currentLevel], currentWordObj.word);
     }
 
     function createTile(char, id, source) {
@@ -437,34 +437,33 @@
 
     function showHint() {
         if (currentWordObj) {
-			document.getElementById('hint').innerText = `குறிப்பு: ${currentWordObj.hint}`;
-//		document.getElementById('hint').innerText = `குறிப்பு: ${currentWordObj.hint} (${currentWordObj.meaning})`;
+            document.getElementById('hint').innerText = `குறிப்பு: ${currentWordObj.hint}`;
         }
     }
 
-	function removeWord(pool, word) {
-		const index = pool.findIndex(item => item.word === word);
-		if (index !== -1) {
-		  pool.splice(index, 1);
-		}
-	}
+    function removeWord(pool, word) {
+        const index = pool.findIndex(item => item.word === word);
+        if (index !== -1) {
+          pool.splice(index, 1);
+        }
+    }
 
-	function showmsg(msg) {
-		const answerArea = document.getElementById('message');
-		answerArea.className = 'message answer';
-		answerArea.innerHTML = msg;		
-	}	
+    function showmsg(msg) {
+        const answerArea = document.getElementById('message');
+        answerArea.className = 'message answer';
+        answerArea.innerHTML = msg;        
+    }    
 
-	function showAnswer() {
-		const answerArea = document.getElementById('message');
-		answerArea.className = 'message answer';
-		answerArea.innerHTML = currentWordObj.word;
-		setTimeout(() => {
-		    nextWord();
-		}, 2000);
-	}
+    function showAnswer() {
+        const answerArea = document.getElementById('message');
+        answerArea.className = 'message answer';
+        answerArea.innerHTML = currentWordObj.word;
+        setTimeout(() => {
+            nextWord();
+        }, 2000);
+    }
 
-	function checkAnswer() {
+    function checkAnswer() {
         const userAttempt = selectedLetters.map(item => item.char).join('');
         const messageEl = document.getElementById('message');
 
@@ -475,11 +474,11 @@
             streak += 1;
             document.getElementById('score').innerText = score;
             document.getElementById('streak').innerText = streak;
-			removeWord(wordBank[currentLevel], userAttempt);
-			
-			setTimeout(() => {
-			    nextWord();
-			}, 1500);
+            removeWord(wordBank[currentLevel], userAttempt);
+            
+            setTimeout(() => {
+                nextWord();
+            }, 1500);
         } else {
             messageEl.innerText = 'தவறான விடை. மீண்டும் முயற்சிக்கவும்!';
             messageEl.className = 'message wrong';
