@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TamilED Eduation System</title>
+<style>
+    .table-container {
+      width: 100%;
+      max-width: 900px;
+      overflow-x: auto;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e2e8f0;
+      margin: 0px 10px 20px 30px;
+    }
+
+    .custom-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+
+    .custom-table thead {
+      background-color: #f1f5f9;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .custom-table th {
+      padding: 1rem 1.25rem;
+      font-weight: 600;
+      color: #475569;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    .custom-table td {
+      padding: 0.3rem 1.25rem;
+      border-bottom: 1px solid #f1f5f9;
+      color: #334155;
+      vertical-align:top;
+      line-height: 1.4;
+    }
+
+    /* Alternating Row Colors */
+    .custom-table tbody tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+
+    /* Row Hover Effect */
+    .custom-table tbody tr:hover {
+      background-color: #f1f5f9;
+      transition: background-color 0.15s ease-in-out;
+    }
+
+    :root {
+        --primary-color: #4f46e5;
+        --primary-hover: #4338ca;
+        --bg-color: #f3f4f6;
+        --card-bg: #ffffff;
+        --text-color: #1f2937;
+        --border-color: #e5e7eb;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        -padding: 20px;
+    background-image: url('background.jpg');        
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+    background-color:white;
+    height: auto;
+    }
+
+    header {
+    width: 100%;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* Elegant blue gradient */
+    color: white;
+    padding: 5px 0px 10px 0px;
+    -display: flex;
+    justify-content: space-between;
+    align-items: center;
+    -box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Fredoka', cursive, sans-serif;        
+        text-align: center;
+    font-size: 30px;
+    }
+
+    h1 {
+        color: var(--primary-color);
+    margin: 10px 0px 10px 10px;
+    font-size: 20px;
+    }
+    .subtext {
+        margin-left: 40px;
+        font-size: 0.95rem;
+        --font-size:20px;
+        margin-bottom: 10px;
+    }
+    .text {
+        line-height: 1.5;
+        margin: 5px 10px 5px 30px;
+        --font-size:20px;
+        font-size: 0.95rem;
+    }
+    ul {
+        margin-left: 50px;
+        --font-size:20px;
+        font-size: 0.95rem;
+        margin-bottom: 10px;
+    }
+    li {
+        margin-bottom: 5px;
+    }
+
+
+
+    @media (min-width: 768px) {
+        .controls {
+            grid-template-columns: 1fr 1fr;
+        }
+        .full-width {
+            grid-column: span 2;
+        }
+    }
+    .close {
+        padding: 20px 0px 20px;
+        --font-size:20px;
+        font-size: 0.95rem;
+        color: green;
+        text-align: center;
+    }
+
+</style>
+</head>
+<body>
+    <header class="no-print">
+      TamilED - PBL - Progressive Based Learning 
+    </header>
+    <div class="container">
+      <div class=text>
+        <h1>What do we want to accomplish?</h1>
+        <ul>
+          <li>Take Tamil to next generations</li>
+            <ul>
+              <li>Instill love for Tamil in them</li>
+              <li>Equip them to take Tamil to their next generations</li>
+            </ul>
+          <li>Using the right approach</li>
+            <ul>
+              <li>Fun and practical learning activities</li>
+              <li>Learner centered</li>
+              <li>Teacher autonomy</li>
+            </ul>
+        </ul>
+        <h1>How do we plan to accomplish this?</h1>
+        <ul>
+          <li>Leave 1 - Beginner - Play Based Learning</li>
+            <ul>
+              <li>Play games in Tamil</li>
+              <li>Enjoy stories and songs in Tamil</li>
+            </ul>
+          <li>Level 2 - Intermediate - Project Based Learning</li>
+            <ul>
+              <li>Create things like arts, crafts, etc</li>
+              <li>Read, write and present</li>
+            </ul>
+          <li>Level 3 - Advanced - Problem Based Learning</li>
+            <ul>
+              <li>Solve real life problems</li>
+              <li>Study, analyze, create and deliver in Tamil</li>
+            </ul>
+        </ul>
+        <h1>Will this work?</h1>
+        <ul>
+          <li>Learning English from school</li>
+            <ul>
+              <li>
+	        I learned English in school for 10+ years on a daily basis from a teacher 
+	        using a well designed curriculum. I would score really well in tests,
+		but could not speak even one or two sentences properly.
+	     </li>
+            </ul>
+          <li>Learning Telugu from playing</li>
+            <ul>
+              <li>
+	        I had opportunity to play with Telugu kids from a neighboring village.
+	        While it was hard initially I was able to comprehend Telugu in about 6 months
+		and was about to respond in about a year. 
+		This was possible only playing once a week with those kids. 
+		Laater I was able to develop literacy skill out of my own interest.
+		So, it is possible to acquire a lot of Tamil with fun filled activities.
+	      </li>
+            </ul>
+        </ul>
+      </div>
+      <div class=close>Will add more!</div>
+    </div>
+</body>
+
+</html>
+
