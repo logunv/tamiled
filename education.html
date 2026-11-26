@@ -144,14 +144,62 @@
         color: green;
         text-align: center;
     }
+    header {
+      width: 100%;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* Elegant blue gradient */
+      color: white;
+      padding: 5px 0px 10px 0px;
+      -display: flex;
+      justify-content: space-between;
+      align-items: center;
+      -box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      font-family: 'Fredoka', cursive, sans-serif;        
+          text-align: center;
+      font-size: 30px;
+    }
 
-</style>
+    .top-banner {
+      width: 100%;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* Elegant blue gradient */
+      color: #ffffff;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .banner-brand {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    } 
+    .banner-brand span {
+      color: #ffcc00;
+    }
+    .banner-title {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 20px;
+        transition: color 0.3s ease;
+        justify-content: space-between;
+        //font-family: 'Fredoka', cursive, sans-serif;
+        align: center;
+    }   
+    .home {
+      color:white !important;
+    }
+  </style>
 </head>
 <body>
-    <header class="no-print">
-        TamilED Education System
-    </header>
-    <div class="container">
+  <header class="top-banner">
+    <div class="banner-brand"> 
+      <a href="index.html"><span class=home>Tamil</span><span>ED</span></a>
+    </div>
+    <div class="banner-title">Education System</div>
+    <nav class="banner-nav"></nav>
+  </header>
+  <div class="container">
       <h1>Introduction</h1>
       <div class=text>
         Our mission is to transmit the Tamil language across generations—not just to the next generation, but through them to all future generations. Achieving this requires instilling a deep love for Tamil while equipping students with robust language skills.

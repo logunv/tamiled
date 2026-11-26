@@ -252,16 +252,63 @@
             aspect-ratio: 1 / 1 !important;
         }
     }
-</style>
+    header {
+      width: 100%;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* Elegant blue gradient */
+      color: white;
+      padding: 5px 0px 10px 0px;
+      -display: flex;
+      justify-content: space-between;
+      align-items: center;
+      -box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      font-family: 'Fredoka', cursive, sans-serif;        
+          text-align: center;
+      font-size: 30px;
+    }
+
+    .top-banner {
+      width: 100%;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* Elegant blue gradient */
+      color: #ffffff;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .banner-brand {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    } 
+    .banner-brand span {
+      color: #ffcc00;
+    }
+    .banner-title {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 20px;
+        transition: color 0.3s ease;
+        justify-content: space-between;
+        //font-family: 'Fredoka', cursive, sans-serif;
+        align: center;
+    }   
+    .home {
+      color:white !important;
+    }
+  </style>
 </head>
 <body>
-	<header class="no-print">
-	    TamilED Bingo Card Generator
-	</header>
-
-        <div class="container">
-	    <p class="no-print">Enter your words, customize options, and generate print-ready Bingo cards.</p>
-
+  <header class="top-banner no-print">
+    <div class="banner-brand"> 
+      <a href="index.html"><span class=home>Tamil</span><span>ED</span></a>
+    </div>
+    <div class="banner-title no-print">Bingo Generator</div>
+    <nav class="banner-nav"></nav>
+  </header>
+  <div class="container">
+    <p class="no-print">Enter your words, customize options, and generate print-ready Bingo cards.</p>
         <section class="controls no-print">
             <div class="form-group full-width">
                 <label for="word-list">Words/Phrases (one per line or comma-separated):</label>
